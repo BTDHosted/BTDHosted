@@ -18,28 +18,26 @@ class SceneMain extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image("sprBg0", "content/sprBg0.png");
-        this.load.image("sprBg1", "content/sprBg1.png");
-        this.load.spritesheet("sprExplosion", "content/sprExplosion.png", {
+        this.load.spritesheet("sprExplosion", "assets/sprExplosion.png", {
         frameWidth: 32,
         frameHeight: 32
         });
 
-        this.load.image("sprDart", "content/sprDart.png");
-        this.load.image("sprPlayer", "content/sprPlayer.png");
-        this.load.image("redBalloon", "content/redBalloon.png");
+        this.load.image("sprDart", "assets/dartImg.png");
+        this.load.image("sprPlayer", "assets/playerImg.png");
+        this.load.image("redBalloon", "assets/redBalloonImg.png");
 
-        this.load.image("sprBtnPlay", "content/sprBtnPlay.png");
-        this.load.image("sprBtnPlayHover", "content/sprBtnPlayHover.png");
-        this.load.image("sprBtnPlayDown", "content/sprBtnPlayDown.png");
-        this.load.image("sprBtnRestart", "content/sprBtnRestart.png");
-        this.load.image("sprBtnRestartHover", "content/sprBtnRestartHover.png");
-        this.load.image("sprBtnRestartDown", "content/sprBtnRestartDown.png");
+        this.load.image("sprBtnPlay", "assets/sprBtnPlay.png");
+        this.load.image("sprBtnPlayHover", "assets/sprBtnPlayHover.png");
+        this.load.image("sprBtnPlayDown", "assets/sprBtnPlayDown.png");
+        this.load.image("sprBtnRestart", "assets/sprBtnRestart.png");
+        this.load.image("sprBtnRestartHover", "assets/sprBtnRestartHover.png");
+        this.load.image("sprBtnRestartDown", "assets/sprBtnRestartDown.png");
     }
     create() {
       var gameScore = 0;
-      returnHighScore();
-      //
+      returnHighScore(); //makes a call to the database and sets the dataBaseHighScore var
+
       var submitButton = document.getElementById("submitUsernameButton");
       submitButton.addEventListener ("click", function(evt){
         let userNameInputField = document.getElementById("userName").value;
@@ -62,20 +60,21 @@ class SceneMain extends Phaser.Scene {
             "sprPlayer",
             0
           ); 
+        //Handles keypresses  
         this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
         this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
         this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
         this.keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+
         this.enemies = this.add.group();
         this.enemyLasers = this.add.group();
         this.playerDarts = this.add.group();
 
+        //Spawns balloons
         this.time.addEvent({
             delay: 1000,
             callback: function() {
-
-
                 //change the values to other balloons as desired for more features
                 var enemy = null;
 
@@ -115,16 +114,12 @@ class SceneMain extends Phaser.Scene {
             //     0
             //   );
             //   this.enemies.add(enemy);
-
-
-
-
-
             },
             callbackScope: this,
             loop: true
           });
-
+        
+        //Collision between a dart and an enemy
         this.physics.add.collider(this.playerDarts, this.enemies, function(playerDart, enemy) {
             if (enemy) {
                 if (enemy.onDestroy !== undefined) {
@@ -146,6 +141,7 @@ class SceneMain extends Phaser.Scene {
               }
         });
 
+        //Collision between a player and an enemy
         this.physics.add.overlap(this.player, this.enemies, function(player, enemy) {
             if (!player.getData("isDead") &&
                 !enemy.getData("isDead")) {
@@ -200,10 +196,8 @@ class SceneMain extends Phaser.Scene {
                   if (enemy.onDestroy !== undefined) {
                     enemy.onDestroy();
                   }
-            
                   enemy.destroy();
                 }
-            
             }
           }
 

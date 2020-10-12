@@ -5,12 +5,12 @@ class SceneMainMenu extends Phaser.Scene {
 
 
     preload(){
-      this.load.image("sprBtnPlay", "content/sprBtnPlay.png");
-      this.load.image("sprBtnPlayHover", "content/sprBtnPlayHover.png");
-      this.load.image("sprBtnPlayDown", "content/sprBtnPlayDown.png");
-      this.load.image("sprBtnRestart", "content/sprBtnRestart.png");
-      this.load.image("sprBtnRestartHover", "content/sprBtnRestartHover.png");
-      this.load.image("sprBtnRestartDown", "content/sprBtnRestartDown.png");
+      this.load.image("sprBtnPlay", "assets/sprBtnPlay.png");
+      this.load.image("sprBtnPlayHover", "assets/sprBtnPlayHover.png");
+      this.load.image("sprBtnPlayDown", "assets/sprBtnPlayDown.png");
+      this.load.image("sprBtnRestart", "assets/sprBtnRestart.png");
+      this.load.image("sprBtnRestartHover", "assets/sprBtnRestartHover.png");
+      this.load.image("sprBtnRestartDown", "assets/sprBtnRestartDown.png");
     }
   
     create() {
@@ -19,12 +19,10 @@ class SceneMainMenu extends Phaser.Scene {
         this.game.config.height * 0.5,
         "sprBtnPlay"
       );
-      console.log("sprite should be added")
       this.btnPlay.setInteractive();
 
       this.btnPlay.on("pointerover", function() {
-        this.btnPlay.setTexture("sprBtnPlayHover"); // set the button texture to sprBtnPlayHover
-        // this.sfx.btnOver.play(); // play the button over sound
+        this.btnPlay.setTexture("sprBtnPlayHover"); 
       }, this);
 
       this.btnPlay.on("pointerout", function() {
