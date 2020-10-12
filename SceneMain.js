@@ -1,3 +1,5 @@
+let dataBaseHighScore;
+
 class SceneMain extends Phaser.Scene {
     constructor() {
       super({ key: "SceneMain" });
@@ -25,15 +27,25 @@ class SceneMain extends Phaser.Scene {
         this.load.image("sprBtnRestartDown", "content/sprBtnRestartDown.png");
 
     }
-  
-    async create() {
-        var actualHighScore = await returnHighScore();
-        console.log("actualHighScore in sceneMain:" + actualHighScore);
+    create() {
+      var gameScore = 0;
+      returnHighScore();
+      var highScoreHTML = document.getElementById("highScore").innerHTML;
+      // var highScore =
+      // console.log("highScore is equalllll tooooooo ==== " + highScore);
 
-        var gameScore = 0;
+
+
+
+
+        // var actualHighScore = await returnHighScore();
+        // console.log("actualHighScore in sceneMain:" + actualHighScore);
+
         // var highScore = 5;
         // document.getElementById("highScore").innerHTML = "High Score: " + highScore;
-        var highScore = await returnHighScore();
+        
+        
+
         // updateHighScore("player1",20);
         
 
@@ -126,11 +138,13 @@ class SceneMain extends Phaser.Scene {
                 gameScore++;
 
                 document.getElementById("gameScore").innerHTML = "Current Score: " + gameScore;
-                if (gameScore >= highScore){
-                    highScore = gameScore;
-                    // updateHighScore(highScore);
+                if (gameScore >= dataBaseHighScore){
+                    console.log("it's greater than");
+                    dataBaseHighScore = gameScore;
+                    document.getElementById("highScore").innerHTML = "High Score: " + dataBaseHighScore;
+                    // updateHighScore("player1",highScore);
                 }
-                document.getElementById("highScore").innerHTML = "High Score: " + highScore;
+                // document.getElementById("highScore").innerHTML = "High Score: " + highScore;
 
 
               }
@@ -140,8 +154,8 @@ class SceneMain extends Phaser.Scene {
             if (!player.getData("isDead") &&
                 !enemy.getData("isDead")) {
               player.pop(false);
-              if (gameScore >= actualHighScore){
-                updateHighScore("player1",gameScore);
+              if (gameScore >= dataBaseHighScore){
+                updateHighScore("player1",dataBaseHighScore);
               }
               player.onDestroy();
               enemy.pop(true);
