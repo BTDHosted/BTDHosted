@@ -146,9 +146,9 @@ class SceneMain extends Phaser.Scene {
             if (!player.getData("isDead") &&
                 !enemy.getData("isDead")) {
               player.pop(false);
-              console.log("@@@@@@@@@@@username atdeath= " + userName);
+              console.log("@@@@@@@@@@@username atdeath= " + userName.value);
               if (gameScore >= dataBaseHighScore){
-                updateHighScore("player1",dataBaseHighScore);
+                updateHighScore(userName.value,dataBaseHighScore);
               }
               player.onDestroy();
               enemy.pop(true);
