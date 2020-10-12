@@ -26,14 +26,17 @@ class SceneMain extends Phaser.Scene {
 
     }
   
-    create() {
+    async create() {
+        var actualHighScore = await returnHighScore();
+        console.log("actualHighScore in sceneMain:" + actualHighScore);
 
         var gameScore = 0;
         // var highScore = 5;
         // document.getElementById("highScore").innerHTML = "High Score: " + highScore;
-        var highScore = returnHighScore();
+        var highScore = await returnHighScore();
         // updateHighScore("player1",20);
-        var actualHighScore = 20;//returnHighScore();
+        
+
 
         this.anims.create({
             key: "sprExplosion",
@@ -127,7 +130,6 @@ class SceneMain extends Phaser.Scene {
                     highScore = gameScore;
                     // updateHighScore(highScore);
                 }
-                console.log("actualHighScore in sceneMain:" + actualHighScore);
                 document.getElementById("highScore").innerHTML = "High Score: " + highScore;
 
 

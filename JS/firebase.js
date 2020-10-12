@@ -32,7 +32,7 @@ function returnHighScore(){
     //   }));
 
     // console.log("@@@@@@@@@ab to print highscore");
-    myDatabase.ref("highScore").on("child_added", function (snapshot){
+    myDatabase.ref('highScore').on('value', function (snapshot){
         console.log("database highscore is = " + snapshot.val().score);
         return(snapshot.val().score);
     });
