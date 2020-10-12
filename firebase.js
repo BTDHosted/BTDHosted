@@ -25,6 +25,8 @@ function updateHighScore(user, score) {
 }
 
 function returnHighScore(){
+    console.log("enters returnhighscore");
+
     // console.log("entering returnHighScore")
     // console.log(myDatabase.ref('/highScore'));
     // console.log(firebase.database().ref("highScore").on("value", function (snapshot) {
@@ -33,8 +35,9 @@ function returnHighScore(){
 
     // console.log("@@@@@@@@@ab to print highscore");
     myDatabase.ref('highScore').on('value', function (snapshot){
-        console.log("database highscore is = " + snapshot.val().score);
-        return(snapshot.val().score);
+        let tmp = snapshot.val().score;
+        console.log("tmpppppdatabase highscore is = " + tmp);
+        return(tmp);
     });
     // return firebase.database().ref("highScore").on("value", function (snapshot) {
     //     highScore = snapshot.val();
