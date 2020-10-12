@@ -4,24 +4,31 @@
     <meta charset="utf-8">
     <meta lang="en-us">
     <title>Bloons Tower Defense Reimagined</title>
-    <div id="gameScore">Current Score: 0</div>
-    <div id="highScore">High Score: </div>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.24.1/phaser.js"
         integrity="sha512-fnB3rJv4a4zjBUsmzYWwNQZ5Efu9ApEvpCsh+B0U0mTg6GCiyXM1Als/ec38Uu6NoFz01S8VaIiLKvawcXQ2Vw=="
         crossorigin="anonymous"></script>
     <!-- <script src="js/phaser.js"></script>  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+    crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-database.js"></script>    
-    <script type="text/javascript" src ="firebase.js"></script>
+    <script type="text/javascript" src="firebase.js"></script>
     <script type="text/javascript" src="Entities.js"></script>
     <script type="text/javascript" src="SceneMainMenu.js"></script>
     <script type="text/javascript" src="SceneMain.js"></script>
     <script type="text/javascript" src="SceneGameOver.js"></script>
-    <script type="text/javascript" src="game.js"></script>
+    <script type="text/javascript" src="game.js"></script>    
 
   </head>
 
   <body>
-    
+    <div id="gameScore">Current Score: </div>
+    <div id="highScore">High Score: </div>
+    <section id="highScoreFields">
+      <h1>Please provide your name for the high score! <input type="text" id="userName"></h1>
+      <button id="submitUsernameButton">Submit Username</button>
+  </section>
   </body>
 </html>

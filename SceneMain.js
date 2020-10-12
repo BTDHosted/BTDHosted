@@ -1,9 +1,19 @@
 let dataBaseHighScore;
+let userNameToSubmit;
 
 class SceneMain extends Phaser.Scene {
     constructor() {
       super({ key: "SceneMain" });
-    //   var gameScore;
+    }
+
+    saveUsername(){
+      submitButton = document.getElementById("submitUsernameButton");
+      submitButton.addEventListener ("click", function(evt){
+        userNameInputField = document.getElementById("userName").value;
+        username = userNameInputField;
+      });
+      console.log("@@@@@@@@@@@username = " + userName);
+
 
     }
 
@@ -25,30 +35,18 @@ class SceneMain extends Phaser.Scene {
         this.load.image("sprBtnRestart", "content/sprBtnRestart.png");
         this.load.image("sprBtnRestartHover", "content/sprBtnRestartHover.png");
         this.load.image("sprBtnRestartDown", "content/sprBtnRestartDown.png");
-
     }
     create() {
       var gameScore = 0;
       returnHighScore();
-      var highScoreHTML = document.getElementById("highScore").innerHTML;
-      // var highScore =
-      // console.log("highScore is equalllll tooooooo ==== " + highScore);
-
-
-
-
-
-        // var actualHighScore = await returnHighScore();
-        // console.log("actualHighScore in sceneMain:" + actualHighScore);
-
-        // var highScore = 5;
-        // document.getElementById("highScore").innerHTML = "High Score: " + highScore;
-        
-        
-
-        // updateHighScore("player1",20);
-        
-
+      //
+      var submitButton = document.getElementById("submitUsernameButton");
+      submitButton.addEventListener ("click", function(evt){
+        let userNameInputField = document.getElementById("userName").value;
+        userNameToSubmit = userNameInputField;
+      });
+      console.log("@@@@@@@@@@@username = " + userNameToSubmit);
+      //
 
         this.anims.create({
             key: "sprExplosion",
@@ -142,9 +140,7 @@ class SceneMain extends Phaser.Scene {
                     console.log("it's greater than");
                     dataBaseHighScore = gameScore;
                     document.getElementById("highScore").innerHTML = "High Score: " + dataBaseHighScore;
-                    // updateHighScore("player1",highScore);
                 }
-                // document.getElementById("highScore").innerHTML = "High Score: " + highScore;
 
 
               }
@@ -154,6 +150,7 @@ class SceneMain extends Phaser.Scene {
             if (!player.getData("isDead") &&
                 !enemy.getData("isDead")) {
               player.pop(false);
+              console.log("@@@@@@@@@@@username atdeath= " + userName);
               if (gameScore >= dataBaseHighScore){
                 updateHighScore("player1",dataBaseHighScore);
               }

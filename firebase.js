@@ -25,29 +25,8 @@ function updateHighScore(user, score) {
 }
 
 function returnHighScore(){
-    console.log("enters returnhighscore");
-
-    // console.log("entering returnHighScore")
-    // console.log(myDatabase.ref('/highScore'));
-    // console.log(firebase.database().ref("highScore").on("value", function (snapshot) {
-    //     highScore = snapshot.val();
-    //   }));
-
-    // console.log("@@@@@@@@@ab to print highscore");
     myDatabase.ref('highScore').on('value', function (snapshot){
-        let tmp = snapshot.val().score;
-        console.log("tmpppppdatabase highscore is = " + tmp);
-        document.getElementById("highScore").innerHTML = "High Score: " + tmp;
-        let tmpAsVal = parseInt(tmp);
         dataBaseHighScore = snapshot.val().score;
-        console.log("isNan tmp? " + isNaN(tmp));
-        console.log("typeof tmp" + typeof(tmp));
-        console.log("isNan tmpVal? " + isNaN(tmpAsVal));
-
-
-        // return(tmpAsVal);
+        document.getElementById("highScore").innerHTML = "High Score: " + dataBaseHighScore;
     });
-    // return firebase.database().ref("highScore").on("value", function (snapshot) {
-    //     highScore = snapshot.val();
-    //   });
     }
